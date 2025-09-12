@@ -50,10 +50,16 @@
                                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">R$ <?= number_format($produto['preco'], 2, ',', '.') ?></td>
                                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><?= htmlspecialchars($produto['quantidade']) ?></td>
                                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><?= htmlspecialchars($produto['nome_categoria'] ?? 'Sem Categoria') ?></td>
-                                        <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                                        <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 flex items-center justify-end">
                                             <a href="/produtos/editar?id=<?= $produto['id'] ?>" class="text-indigo-600 hover:text-indigo-900">Editar</a>
-                                            <a href="#" class="text-red-600 hover:text-red-900 ml-4">Excluir</a>
-                                        </td>
+                                            
+                                            <form action="/produtos/excluir" method="POST" class="inline" onsubmit="return confirm('Você tem certeza que deseja excluir este produto?');">
+                                                <input type="hidden" name="id" value="<?= $produto['id'] ?>">
+                                                <button type="submit" class="text-red-600 hover:text-red-900 ml-4">
+                                                    Excluir
+                                                </button>
+                                            </form>
+                                            </td>
                                     </tr>
                                 <?php endforeach; ?>
                             <?php endif; ?>

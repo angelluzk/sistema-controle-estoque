@@ -56,4 +56,18 @@ class ProdutoModel
         $stmt->bindValue(':categoria_id', $data['categoria_id'] ?: null);
         return $stmt->execute();
     }
+
+    /**
+     * Exclui um produto do banco de dados pelo seu ID.
+     *
+     * @param int $id O ID do produto a ser excluído.
+     * @return bool True se a exclusão foi bem-sucedida, False caso contrário.
+     */
+    public function delete(int $id): bool
+    {
+        $sql = "DELETE FROM produtos WHERE id = :id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':id', $id);
+        return $stmt->execute();
+    }
 }

@@ -25,13 +25,7 @@ class ProdutoController
 
     public function store()
     {
-        $data = [
-            'nome' => $_POST['nome'],
-            'sku' => $_POST['sku'],
-            'preco' => $_POST['preco'],
-            'quantidade' => $_POST['quantidade'],
-            'categoria_id' => $_POST['categoria_id']
-        ];
+        $data = [ 'nome' => $_POST['nome'], 'sku' => $_POST['sku'], 'preco' => $_POST['preco'], 'quantidade' => $_POST['quantidade'], 'categoria_id' => $_POST['categoria_id'] ];
         $produtoModel = new ProdutoModel();
         $produtoModel->save($data);
         header('Location: /produtos');
@@ -49,16 +43,20 @@ class ProdutoController
 
     public function update()
     {
-        $data = [
-            'id' => $_POST['id'],
-            'nome' => $_POST['nome'],
-            'sku' => $_POST['sku'],
-            'preco' => $_POST['preco'],
-            'quantidade' => $_POST['quantidade'],
-            'categoria_id' => $_POST['categoria_id']
-        ];
+        $data = [ 'id' => $_POST['id'], 'nome' => $_POST['nome'], 'sku' => $_POST['sku'], 'preco' => $_POST['preco'], 'quantidade' => $_POST['quantidade'], 'categoria_id' => $_POST['categoria_id'] ];
         $produtoModel = new ProdutoModel();
         $produtoModel->update($data);
+        header('Location: /produtos');
+    }
+
+    /**
+     * Processa a requisição para excluir um produto.
+     */
+    public function delete()
+    {
+        $id = (int)$_POST['id'];
+        $produtoModel = new ProdutoModel();
+        $produtoModel->delete($id);
         header('Location: /produtos');
     }
 }

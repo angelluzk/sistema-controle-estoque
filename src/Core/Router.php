@@ -36,8 +36,15 @@ class Router
                 $controllerName = 'App\Controller\ProdutoController';
                 $methodName = 'update';
                 break;
+            
+            // NOVA ROTA PARA EXCLUSÃO
+            case ($uri === '/produtos/excluir' && $method === 'POST'):
+                $controllerName = 'App\Controller\ProdutoController';
+                $methodName = 'delete';
+                break;
+
             default:
-                http_response_code(404);
+                http_response_code(4404);
                 echo "<h1>Página não encontrada!</h1>";
                 return;
         }
