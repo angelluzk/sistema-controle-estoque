@@ -33,8 +33,12 @@
         <main class="-mt-32">
             <div class="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
                 <div class="rounded-lg bg-white px-5 py-6 shadow sm:px-6">
-                    <h2 class="text-xl font-semibold leading-7 text-gray-900 mb-4">Categorias de Produtos</h2>
-                    
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-xl font-semibold leading-7 text-gray-900">Categorias de Produtos</h2>
+                        <a href="/categorias/novo" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500">
+                            Cadastrar Nova Categoria
+                        </a>
+                    </div>
                     <?php if (empty($categorias)): ?>
                         <p class="text-gray-500">Nenhuma categoria encontrada.</p>
                     <?php else: ?>

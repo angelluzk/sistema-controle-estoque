@@ -12,10 +12,23 @@ class Router
         $method = $_SERVER['REQUEST_METHOD'];
 
         switch (true) {
+            // ROTA PRINCIPAL AGORA É DO CategoriaController
             case ($uri === '/' && $method === 'GET'):
-                $controllerName = 'App\Controller\HomeController';
+                $controllerName = 'App\Controller\CategoriaController';
                 $methodName = 'index';
                 break;
+            
+            // NOVAS ROTAS DE CATEGORIA
+            case ($uri === '/categorias/novo' && $method === 'GET'):
+                $controllerName = 'App\Controller\CategoriaController';
+                $methodName = 'create';
+                break;
+            case ($uri === '/categorias' && $method === 'POST'):
+                $controllerName = 'App\Controller\CategoriaController';
+                $methodName = 'store';
+                break;
+            
+            // ROTAS DE PRODUTOS (EXISTENTES)
             case ($uri === '/produtos' && $method === 'GET'):
                 $controllerName = 'App\Controller\ProdutoController';
                 $methodName = 'index';
@@ -36,15 +49,13 @@ class Router
                 $controllerName = 'App\Controller\ProdutoController';
                 $methodName = 'update';
                 break;
-            
-            // NOVA ROTA PARA EXCLUSÃO
             case ($uri === '/produtos/excluir' && $method === 'POST'):
                 $controllerName = 'App\Controller\ProdutoController';
                 $methodName = 'delete';
                 break;
 
             default:
-                http_response_code(4404);
+                http_response_code(404);
                 echo "<h1>Página não encontrada!</h1>";
                 return;
         }
