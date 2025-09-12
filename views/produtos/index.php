@@ -21,7 +21,7 @@
                 <div class="rounded-lg bg-white px-5 py-6 shadow sm:px-6">
                     <div class="flex justify-between items-center mb-4">
                         <h2 class="text-xl font-semibold leading-7 text-gray-900">Lista de Produtos</h2>
-                        <a href="/produtos/novo" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                        <a href="/produtos/novo" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500">
                             Cadastrar Novo Produto
                         </a>
                     </div>
@@ -51,7 +51,7 @@
                                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><?= htmlspecialchars($produto['quantidade']) ?></td>
                                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><?= htmlspecialchars($produto['nome_categoria'] ?? 'Sem Categoria') ?></td>
                                         <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                            <a href="#" class="text-indigo-600 hover:text-indigo-900">Editar</a>
+                                            <a href="/produtos/editar?id=<?= $produto['id'] ?>" class="text-indigo-600 hover:text-indigo-900">Editar</a>
                                             <a href="#" class="text-red-600 hover:text-red-900 ml-4">Excluir</a>
                                         </td>
                                     </tr>
