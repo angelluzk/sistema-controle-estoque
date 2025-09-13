@@ -6,7 +6,7 @@ class Router
 {
     public function run()
     {
-        // Precisamos garantir que a sessão seja iniciada em todas as requisições
+        // Para garantir que a sessão seja iniciada em todas as requisições
         // para que as mensagens de erro funcionem.
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
@@ -16,6 +16,16 @@ class Router
         $method = $_SERVER['REQUEST_METHOD'];
 
         switch (true) {
+            // ROTAS DE AUTENTICAÇÃO
+            case ($uri === '/registrar' && $method === 'GET'):
+                $controllerName = 'App\Controller\AuthController';
+                $methodName = 'showRegistrationForm';
+                break;
+            case ($uri === '/registrar' && $method === 'POST'):
+                $controllerName = 'App\Controller\AuthController';
+                $methodName = 'register';
+                break;
+
             // ROTAS DE CATEGORIA
             case ($uri === '/' && $method === 'GET'):
                 $controllerName = 'App\Controller\CategoriaController';

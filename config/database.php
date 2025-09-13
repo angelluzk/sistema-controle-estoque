@@ -1,7 +1,5 @@
 <?php
 
-// config/database.php
-
 /**
  * Arquivo de configuração do banco de dados.
  * Retorna um array com as credenciais de conexão.

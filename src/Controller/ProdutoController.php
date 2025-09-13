@@ -1,7 +1,5 @@
 <?php
 
-// src/Controller/ProdutoController.php
-
 namespace App\Controller;
 
 use App\Model\ProdutoModel;

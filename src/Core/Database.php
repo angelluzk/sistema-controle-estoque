@@ -1,7 +1,5 @@
 <?php
 
-// src/Core/Database.php
-
 namespace App\Core;
 
 use PDO;
