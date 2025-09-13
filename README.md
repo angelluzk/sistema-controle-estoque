@@ -1,0 +1,1 @@
+Inicio do Projeto de Controle de Estoque em PHP, com PostgreSQL e MVC..
