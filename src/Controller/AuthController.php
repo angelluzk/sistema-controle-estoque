@@ -43,12 +43,58 @@ class AuthController
         }
 
         // Salva o novo usuário
+        if ($usuarioModel->findByEmail($email)) { die("Erro: Este e-mail já está cadastrado."); }
         if ($usuarioModel->save($nome, $email, $senha)) {
-            // Redireciona para uma página de sucesso ou de login (que criaremos depois)
-            echo "Usuário registrado com sucesso! Você já pode fazer o login.";
-            // header('Location: /login');
+            header('Location: /login');
         } else {
             die("Erro: Não foi possível registrar o usuário.");
         }
+    }
+/**
+     * Exibe o formulário de login.
+     */
+    public function showLoginForm()
+    {
+        require_once '../views/auth/login.php';
+    }
+
+    /**
+     * Processa a tentativa de login.
+     */
+    public function login()
+    {
+        $email = $_POST['email'];
+        $senha = $_POST['senha'];
+
+        $usuarioModel = new UsuarioModel();
+        $usuario = $usuarioModel->findByEmail($email);
+
+        // Verifica se o usuário existe e se a senha está correta
+        if ($usuario && password_verify($senha, $usuario['senha'])) {
+            // Login bem-sucedido: guarda os dados do usuário na sessão
+            $_SESSION['usuario_id'] = $usuario['id'];
+            $_SESSION['usuario_nome'] = $usuario['nome'];
+            
+            // Redireciona para a página principal do sistema
+            header('Location: /');
+        } else {
+            // Login falhou: define uma mensagem de erro e redireciona de volta
+            $_SESSION['erro_login'] = "E-mail ou senha inválidos.";
+            header('Location: /login');
+        }
+    }
+
+    /**
+     * Realiza o logout do usuário.
+     */
+    public function logout()
+    {
+        // Limpa todas as variáveis de sessão
+        session_unset();
+        // Destrói a sessão
+        session_destroy();
+
+        // Redireciona para a página de login
+        header('Location: /login');
     }
 }

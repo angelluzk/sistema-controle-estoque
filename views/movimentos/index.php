@@ -20,6 +20,18 @@
                             </div>
                         </div>
                     </div>
+                    <div class="hidden md:block">
+                        <div class="ml-4 flex items-center md:ml-6">
+                            <?php if (isset($_SESSION['usuario_nome'])): ?>
+                                <span class="text-gray-400 mr-4">Olá, <?= htmlspecialchars($_SESSION['usuario_nome']) ?></span>
+                                <form action="/logout" method="POST">
+                                    <button type="submit" class="rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500">
+                                        Sair
+                                    </button>
+                                </form>
+                            <?php endif; ?>
+                        </div>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -31,7 +43,7 @@
         <main class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
             <div class="mb-8 rounded-lg bg-white p-6 shadow">
                 <h2 class="text-xl font-semibold mb-4">Registrar Nova Movimentação</h2>
-                <?php if ($erro): ?>
+                <?php if (isset($erro)): ?>
                     <div class="mb-4 rounded-md bg-red-50 p-4">
                         <p class="text-sm font-medium text-red-800"><?= htmlspecialchars($erro) ?></p>
                     </div>

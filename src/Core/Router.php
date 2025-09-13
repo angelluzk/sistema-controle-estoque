@@ -15,8 +15,32 @@ class Router
         $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
         $method = $_SERVER['REQUEST_METHOD'];
 
+        // Lista de rotas que NÃO precisam de autenticação
+        $rotasPublicas = [
+            '/login' => ['GET', 'POST'],
+            '/registrar' => ['GET', 'POST']
+        ];
+        
+        $rotaAtualEhPublica = false;
+        if (isset($rotasPublicas[$uri]) && in_array($method, $rotasPublicas[$uri])) {
+            $rotaAtualEhPublica = true;
+        }
+
+        // Se a rota não é pública E o usuário não está logado, redireciona para o login.
+        if (!$rotaAtualEhPublica && !isset($_SESSION['usuario_id'])) {
+            header('Location: /login');
+            exit; // Encerra a execução para garantir que nada mais seja carregado
+        }
+
+        // Se a rota É pública E o usuário JÁ ESTÁ logado, redireciona para a home.
+        // Isso impede que um usuário logado acesse a página de login/registro novamente.
+        if ($rotaAtualEhPublica && isset($_SESSION['usuario_id'])) {
+             header('Location: /');
+             exit;
+        }
+
         switch (true) {
-            // ROTAS DE AUTENTICAÇÃO
+            // ROTAS DE AUTENTICAÇÃO (Públicas)
             case ($uri === '/registrar' && $method === 'GET'):
                 $controllerName = 'App\Controller\AuthController';
                 $methodName = 'showRegistrationForm';
@@ -24,6 +48,18 @@ class Router
             case ($uri === '/registrar' && $method === 'POST'):
                 $controllerName = 'App\Controller\AuthController';
                 $methodName = 'register';
+                break;
+            case ($uri === '/login' && $method === 'GET'):
+                $controllerName = 'App\Controller\AuthController';
+                $methodName = 'showLoginForm';
+                break;
+            case ($uri === '/login' && $method === 'POST'):
+                $controllerName = 'App\Controller\AuthController';
+                $methodName = 'login';
+                break;
+            case ($uri === '/logout' && $method === 'POST'): // Logout via POST por segurança
+                $controllerName = 'App\Controller\AuthController';
+                $methodName = 'logout';
                 break;
 
             // ROTAS DE CATEGORIA
