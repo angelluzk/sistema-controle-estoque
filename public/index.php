@@ -1,27 +1,18 @@
 <?php
 
-// public/index.php
-
-/**
- * ---------------------------------------------------------------
- * PONTO DE ENTRADA DA APLICAÇÃO (FRONT CONTROLLER)
- * ---------------------------------------------------------------
- *
- * Este arquivo é o único ponto de acesso para todas as requisições.
- * Ele é responsável por:
- * 1. Carregar o autoloader do Composer.
- * 2. Iniciar o nosso roteador para que ele decida qual
- * controller e método deve ser executado.
- */
-
-// 1. Carrega o autoload do Composer para termos acesso a todas as nossas classes
+// 1. Carrega o autoloader do Composer
 require_once '../vendor/autoload.php';
 
-// 2. Importa a classe Router para que possamos usá-la.
+// 2. Importa a classe Dotenv
+use Dotenv\Dotenv;
+
+// 3. Carrega as variáveis de ambiente do arquivo .env
+$dotenv = Dotenv::createImmutable(__DIR__ . '/../');
+$dotenv->load();
+
+// 4. Importa a classe Router (como antes)
 use App\Core\Router;
 
-// 3. Cria uma nova instância do nosso Roteador.
+// 5. Inicia o roteador (como antes)
 $router = new Router();
-
-// 4. Executa o roteador, que vai cuidar de todo o resto.
 $router->run();

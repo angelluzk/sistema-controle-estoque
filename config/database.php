@@ -2,12 +2,13 @@
 
 /**
  * Arquivo de configuração do banco de dados.
- * Retorna um array com as credenciais de conexão.
+ * Lê as credenciais das variáveis de ambiente ($_ENV)
+ * carregadas pelo Dotenv.
  */
 return [
-    'host' => 'localhost',
-    'port' => '5432',
-    'dbname' => 'controle_estoque',
-    'user' => 'postgres', // Ou o seu usuário
-    'password' => '123456' // <-- COLOQUE SUA SENHA AQUI
+    'host' => $_ENV['DB_HOST'],
+    'port' => $_ENV['DB_PORT'],
+    'dbname' => $_ENV['DB_DATABASE'],
+    'user' => $_ENV['DB_USERNAME'],
+    'password' => $_ENV['DB_PASSWORD']
 ];
