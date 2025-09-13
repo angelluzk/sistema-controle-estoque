@@ -39,12 +39,13 @@
                             Cadastrar Nova Categoria
                         </a>
                     </div>
+                    
                     <?php if (empty($categorias)): ?>
                         <p class="text-gray-500">Nenhuma categoria encontrada.</p>
                     <?php else: ?>
                         <ul role="list" class="divide-y divide-gray-100">
                             <?php foreach ($categorias as $categoria): ?>
-                                <li class="flex justify-between gap-x-6 py-5">
+                                <li class="flex items-center justify-between gap-x-6 py-5">
                                     <div class="flex min-w-0 gap-x-4">
                                         <div class="min-w-0 flex-auto">
                                             <p class="text-sm font-semibold leading-6 text-gray-900">
@@ -55,7 +56,16 @@
                                             </p>
                                         </div>
                                     </div>
-                                </li>
+                                    <div class="flex-shrink-0 flex items-center gap-x-4">
+                                        <a href="/categorias/editar?id=<?= $categoria['id'] ?>" class="text-sm font-semibold leading-6 text-indigo-600 hover:text-indigo-900">Editar</a>
+                                        <form action="/categorias/excluir" method="POST" class="inline" onsubmit="return confirm('Tem certeza que deseja excluir esta categoria? Os produtos nela não serão excluídos, mas ficarão sem categoria.');">
+                                            <input type="hidden" name="id" value="<?= $categoria['id'] ?>">
+                                            <button type="submit" class="text-sm font-semibold leading-6 text-red-600 hover:text-red-900">
+                                                Excluir
+                                            </button>
+                                        </form>
+                                    </div>
+                                    </li>
                             <?php endforeach; ?>
                         </ul>
                     <?php endif; ?>

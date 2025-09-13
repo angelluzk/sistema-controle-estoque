@@ -1,7 +1,5 @@
 <?php
 
-// src/Core/Router.php
-
 namespace App\Core;
 
 class Router
@@ -12,13 +10,11 @@ class Router
         $method = $_SERVER['REQUEST_METHOD'];
 
         switch (true) {
-            // ROTA PRINCIPAL AGORA É DO CategoriaController
+            // ROTAS DE CATEGORIA
             case ($uri === '/' && $method === 'GET'):
                 $controllerName = 'App\Controller\CategoriaController';
                 $methodName = 'index';
                 break;
-            
-            // NOVAS ROTAS DE CATEGORIA
             case ($uri === '/categorias/novo' && $method === 'GET'):
                 $controllerName = 'App\Controller\CategoriaController';
                 $methodName = 'create';
@@ -27,8 +23,20 @@ class Router
                 $controllerName = 'App\Controller\CategoriaController';
                 $methodName = 'store';
                 break;
+            case ($uri === '/categorias/editar' && $method === 'GET'):
+                $controllerName = 'App\Controller\CategoriaController';
+                $methodName = 'edit';
+                break;
+            case ($uri === '/categorias/atualizar' && $method === 'POST'):
+                $controllerName = 'App\Controller\CategoriaController';
+                $methodName = 'update';
+                break;
+            case ($uri === '/categorias/excluir' && $method === 'POST'):
+                $controllerName = 'App\Controller\CategoriaController';
+                $methodName = 'delete';
+                break;
             
-            // ROTAS DE PRODUTOS (EXISTENTES)
+            // ROTAS DE PRODUTOS
             case ($uri === '/produtos' && $method === 'GET'):
                 $controllerName = 'App\Controller\ProdutoController';
                 $methodName = 'index';
