@@ -6,8 +6,6 @@ class Router
 {
     public function run()
     {
-        // Para garantir que a sessão seja iniciada em todas as requisições
-        // para que as mensagens de erro funcionem.
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
@@ -15,32 +13,31 @@ class Router
         $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
         $method = $_SERVER['REQUEST_METHOD'];
 
-        // Lista de rotas que NÃO precisam de autenticação
         $rotasPublicas = [
             '/login' => ['GET', 'POST'],
             '/registrar' => ['GET', 'POST']
         ];
         
-        $rotaAtualEhPublica = false;
-        if (isset($rotasPublicas[$uri]) && in_array($method, $rotasPublicas[$uri])) {
-            $rotaAtualEhPublica = true;
-        }
+        $rotaAtualEhPublica = isset($rotasPublicas[$uri]) && in_array($method, $rotasPublicas[$uri]);
 
-        // Se a rota não é pública E o usuário não está logado, redireciona para o login.
         if (!$rotaAtualEhPublica && !isset($_SESSION['usuario_id'])) {
             header('Location: /login');
-            exit; // Encerra a execução para garantir que nada mais seja carregado
+            exit;
         }
 
-        // Se a rota É pública E o usuário JÁ ESTÁ logado, redireciona para a home.
-        // Isso impede que um usuário logado acesse a página de login/registro novamente.
         if ($rotaAtualEhPublica && isset($_SESSION['usuario_id'])) {
              header('Location: /');
              exit;
         }
 
         switch (true) {
-            // ROTAS DE AUTENTICAÇÃO (Públicas)
+            // ROTA PRINCIPAL AGORA É O DASHBOARD
+            case ($uri === '/' && $method === 'GET'):
+                $controllerName = 'App\Controller\DashboardController';
+                $methodName = 'index';
+                break;
+            
+            // ROTAS DE AUTENTICAÇÃO
             case ($uri === '/registrar' && $method === 'GET'):
                 $controllerName = 'App\Controller\AuthController';
                 $methodName = 'showRegistrationForm';
@@ -57,13 +54,13 @@ class Router
                 $controllerName = 'App\Controller\AuthController';
                 $methodName = 'login';
                 break;
-            case ($uri === '/logout' && $method === 'POST'): // Logout via POST por segurança
+            case ($uri === '/logout' && $method === 'POST'):
                 $controllerName = 'App\Controller\AuthController';
                 $methodName = 'logout';
                 break;
 
-            // ROTAS DE CATEGORIA
-            case ($uri === '/' && $method === 'GET'):
+            // ROTA PARA A LISTA DE CATEGORIAS
+            case ($uri === '/categorias' && $method === 'GET'):
                 $controllerName = 'App\Controller\CategoriaController';
                 $methodName = 'index';
                 break;
@@ -114,7 +111,7 @@ class Router
                 $methodName = 'delete';
                 break;
 
-            // ROTAS DE MOVIMENTAÇÕES
+            // ROTAS DE MOVIMENTAÇÃO
             case ($uri === '/movimentos' && $method === 'GET'):
                 $controllerName = 'App\Controller\MovimentoController';
                 $methodName = 'index';
@@ -123,7 +120,7 @@ class Router
                 $controllerName = 'App\Controller\MovimentoController';
                 $methodName = 'store';
                 break;
-                
+
             default:
                 http_response_code(404);
                 echo "<h1>Página não encontrada!</h1>";

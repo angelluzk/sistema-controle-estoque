@@ -1,7 +1,5 @@
 <?php
 
-// src/Model/ProdutoModel.php
-
 namespace App\Model;
 
 use App\Core\Database;
@@ -69,5 +67,32 @@ class ProdutoModel
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':id', $id);
         return $stmt->execute();
+    }
+
+ /**
+     * Retorna a contagem total de produtos cadastrados.
+     */
+    public function getTotalCount(): int
+    {
+        $stmt = $this->pdo->query("SELECT COUNT(id) FROM produtos");
+        return $stmt->fetchColumn();
+    }
+
+    /**
+     * Retorna a soma da quantidade de todos os itens em estoque.
+     */
+    public function getTotalStockQuantity(): int
+    {
+        $stmt = $this->pdo->query("SELECT SUM(quantidade) FROM produtos");
+        return (int)$stmt->fetchColumn(); // Cast para int para garantir
+    }
+
+    /**
+     * Retorna os N produtos com maior quantidade em estoque.
+     */
+    public function getTopStockProducts(int $limit = 5): array
+    {
+        $stmt = $this->pdo->query("SELECT nome, quantidade FROM produtos ORDER BY quantidade DESC LIMIT {$limit}");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }

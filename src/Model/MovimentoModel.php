@@ -96,4 +96,21 @@ class MovimentoModel
             throw $e;
         }
     }
+
+ /**
+     * Busca os últimos N movimentos de estoque.
+     */
+    public function findLatest(int $limit = 5): array
+    {
+        $sql = "SELECT m.tipo, m.quantidade, m.data_movimento, p.nome AS nome_produto
+                FROM movimentos_estoque m
+                JOIN produtos p ON m.produto_id = p.id
+                ORDER BY m.data_movimento DESC
+                LIMIT :limit";
+        
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

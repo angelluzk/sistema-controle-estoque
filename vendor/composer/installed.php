@@ -3,7 +3,7 @@
         'name' => 'angel/sistema-controle-estoque',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'e61ffa9fa84743e16ae46af3dbe8f13d3bb277e1',
+        'reference' => 'a7ef87fcf425da552a641df3942fc991e0b42c9a',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'angel/sistema-controle-estoque' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'e61ffa9fa84743e16ae46af3dbe8f13d3bb277e1',
+            'reference' => 'a7ef87fcf425da552a641df3942fc991e0b42c9a',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

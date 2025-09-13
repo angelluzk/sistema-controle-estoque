@@ -15,7 +15,8 @@
                         <div class="flex items-center">
                             <div class="hidden md:block">
                                 <div class="ml-10 flex items-baseline space-x-4">
-                                    <a href="/" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Categorias</a>
+                                    <a href="/" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Dashboard</a>
+                                    <a href="/categorias" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Categorias</a>
                                     <a href="/produtos" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Produtos</a>
                                     <a href="/movimentos" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Movimentações</a>
                                 </div>
