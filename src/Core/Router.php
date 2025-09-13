@@ -6,6 +6,12 @@ class Router
 {
     public function run()
     {
+        // Precisamos garantir que a sessão seja iniciada em todas as requisições
+        // para que as mensagens de erro funcionem.
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
         $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
         $method = $_SERVER['REQUEST_METHOD'];
 
@@ -62,6 +68,16 @@ class Router
                 $methodName = 'delete';
                 break;
 
+            // ROTAS DE MOVIMENTAÇÕES
+            case ($uri === '/movimentos' && $method === 'GET'):
+                $controllerName = 'App\Controller\MovimentoController';
+                $methodName = 'index';
+                break;
+            case ($uri === '/movimentos' && $method === 'POST'):
+                $controllerName = 'App\Controller\MovimentoController';
+                $methodName = 'store';
+                break;
+                
             default:
                 http_response_code(404);
                 echo "<h1>Página não encontrada!</h1>";
