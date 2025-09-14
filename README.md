@@ -161,7 +161,11 @@ Siga os passos abaixo para configurar e executar o projeto em seu ambiente local
     -   Abra seu navegador e acesse: `http://localhost:8000`
     -   A primeira página que você verá é a de registro. Crie um usuário para começar a usar o sistema!
 
----
+-----
+
+## 🤝 Contribuição
+
+Contribuições são muito bem-vindas\! Sinta-se à vontade para abrir uma **issue** para relatar um bug ou sugerir uma melhoria, ou enviar um **pull request** com suas alterações.
 
 ### ✍️ Autor
 
