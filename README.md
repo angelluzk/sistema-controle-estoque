@@ -165,7 +165,10 @@ Siga os passos abaixo para configurar e executar o projeto em seu ambiente local
 
 ### ✍️ Autor
 
-**Angel Luz**
+> Desenvolvido com 💛 por **Angel Luz**
 
--   GitHub: [@angelluzk](https://github.com/angelluzk)
--   LinkedIn: [angelitaluz](https://www.linkedin.com/in/angelitaluz)
+Se quiser conversar, colaborar ou oferecer uma oportunidade:
+
+📬 E-mail: [contatoangelluz@gmail.com](mailto:contatoangelluz@gmail.com)  
+🐙 GitHub: [@angelluzk](https://github.com/angelluzk)  
+💼 LinkedIn: [linkedin.com/in/angelitaluz](https://www.linkedin.com/in/angelitaluz/)
