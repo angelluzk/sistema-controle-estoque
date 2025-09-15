@@ -6,8 +6,13 @@ use App\Core\Database;
 use PDO;
 use Exception;
 
+/**
+ * Gerencia os dados da tabela 'movimentos_estoque'.
+ * Contém a lógica de negócio mais complexa, envolvendo transações.
+ */
 class MovimentoModel
 {
+    /** @var PDO A instância da conexão com o banco. */
     private $pdo;
 
     public function __construct()
@@ -20,6 +25,8 @@ class MovimentoModel
      */
     public function findAll(): array
     {
+        // A cláusula JOIN é usada para buscar o nome do produto na tabela 'produtos'
+        // com base no 'produto_id' presente na tabela de movimentos.
         $sql = "SELECT 
                     m.id,
                     m.tipo,

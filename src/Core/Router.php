@@ -2,36 +2,56 @@
 
 namespace App\Core;
 
+/**
+ * Classe Router (Roteador)
+ *
+ * O "cérebro" da aplicação. Sua função é analisar a URL e o método HTTP
+ * (GET, POST) da requisição para determinar qual método de qual Controller
+ * deve ser executado. Ele também centraliza as regras de segurança, como
+ * a proteção de rotas para usuários não autenticados.
+ */
 class Router
 {
+    /**
+     * Método principal que executa o roteamento.
+     */
     public function run()
     {
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }
+        // A sessão já foi iniciada em public/index.php
 
+        // Extrai a URI da requisição (ex: "/produtos", "/categorias/novo").
         $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+        // Extrai o método HTTP (ex: "GET", "POST").
         $method = $_SERVER['REQUEST_METHOD'];
 
+        // Define um array de rotas que são públicas e não precisam de login.
         $rotasPublicas = [
             '/login' => ['GET', 'POST'],
             '/registrar' => ['GET', 'POST']
         ];
         
+        // Verifica se a rota atual (URI e método) está na lista de rotas públicas.
         $rotaAtualEhPublica = isset($rotasPublicas[$uri]) && in_array($method, $rotasPublicas[$uri]);
 
+        // REGRA DE SEGURANÇA 1: Proteger rotas privadas.
+        // Se a rota NÃO é pública E o usuário NÃO tem um ID na sessão...
         if (!$rotaAtualEhPublica && !isset($_SESSION['usuario_id'])) {
+            // ...redireciona para a página de login e encerra a execução.
             header('Location: /login');
             exit;
         }
 
+        // REGRA DE SEGURANÇA 2: Impedir acesso a páginas de login/registro se já estiver logado.
+        // Se a rota É pública E o usuário JÁ ESTÁ logado...
         if ($rotaAtualEhPublica && isset($_SESSION['usuario_id'])) {
+             // ...redireciona para o dashboard.
              header('Location: /');
              exit;
         }
 
+        // O 'switch (true)' permite uma estrutura de roteamento limpa baseada em condições.
         switch (true) {
-            // ROTA PRINCIPAL AGORA É O DASHBOARD
+            // ROTA PRINCIPAL É O DASHBOARD
             case ($uri === '/' && $method === 'GET'):
                 $controllerName = 'App\Controller\DashboardController';
                 $methodName = 'index';
@@ -121,13 +141,16 @@ class Router
                 $methodName = 'store';
                 break;
 
+            // Se nenhuma das rotas acima corresponder, retorna um erro 404.
             default:
                 http_response_code(404);
                 echo "<h1>Página não encontrada!</h1>";
-                return;
+                return; // Encerra a execução.
         }
 
+        // Após encontrar a rota, instancia o Controller correspondente.
         $controller = new $controllerName();
+        // E chama o método correspondente para lidar com a requisição.
         $controller->$methodName();
     }
 }
