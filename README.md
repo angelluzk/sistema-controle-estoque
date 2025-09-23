@@ -53,7 +53,7 @@ Um sistema web completo para gestão de estoque, desenvolvido passo a passo com 
 <details>
   <summary>🖼️ Clique aqui para visualizar as telas do sistema..</summary>
 
-  ![Tela de Login](public/img/tela-login.pngrequisitos.png)
+  ![Tela de Login](public/img/tela-login.png)
   ![Tela de Cadastro](public/img/tela-cadastro.png)
   ![Tela Dashboard](public/img/tela-dashboard.png)
   ![Tela de Cadastro de Categorias](public/img/tela-cad-categoria.png)
@@ -61,6 +61,12 @@ Um sistema web completo para gestão de estoque, desenvolvido passo a passo com 
   ![Tela de Movimentações](public/img/tela-movimentações.png)
 
 </details>
+
+<h4 align="right">
+
+[Clica para Voltar](#-visualizacao-do-projeto)
+
+</h4>
 
 ---
 
