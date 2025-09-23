@@ -26,6 +26,28 @@ Um sistema web completo para gestão de estoque, desenvolvido passo a passo com 
 
 ---
 
+## 📷 Visualização do Projeto
+
+<details>
+  <summary>🖼️ Clique aqui para visualizar as telas do sistema..</summary>
+
+  ![Tela de Login](public/img/tela-login.png)
+  ![Tela de Cadastro](public/img/tela-cadastro.png)
+  ![Tela Dashboard](public/img/tela-dashboard.png)
+  ![Tela de Cadastro de Categorias](public/img/tela-cad-categoria.png)
+  ![Tela de Cadastro de Produtos](public/img/tela-produtos.png)
+  ![Tela de Movimentações](public/img/tela-movimentações.png)
+
+</details>
+
+<h4 align="right">
+
+[Voltar](#-visualização-do-projeto)
+
+</h4>
+
+---
+
 ### 🚀 Tecnologias Utilizadas
 
 #### **Backend**
@@ -45,28 +67,6 @@ Um sistema web completo para gestão de estoque, desenvolvido passo a passo com 
 ![DBeaver](https://img.shields.io/badge/DBeaver-382b57.svg?style=for-the-badge&logo=dbeaver&logoColor=white)
 ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
 ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
-
----
-
-### 📷 Visualização do Projeto
-
-<details>
-  <summary>🖼️ Clique aqui para visualizar as telas do sistema..</summary>
-
-  ![Tela de Login](public/img/tela-login.png)
-  ![Tela de Cadastro](public/img/tela-cadastro.png)
-  ![Tela Dashboard](public/img/tela-dashboard.png)
-  ![Tela de Cadastro de Categorias](public/img/tela-cad-categoria.png)
-  ![Tela de Cadastro de Produtos](public/img/tela-produtos.png)
-  ![Tela de Movimentações](public/img/tela-movimentações.png)
-
-</details>
-
-<h4 align="right">
-
-[Clica para Voltar](#-visualizacao-do-projeto)
-
-</h4>
 
 ---
 
