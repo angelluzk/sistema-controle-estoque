@@ -48,6 +48,22 @@ Um sistema web completo para gestão de estoque, desenvolvido passo a passo com 
 
 ---
 
+### 📷 Visualização do Projeto
+
+<details>
+  <summary>🖼️ Clique aqui para visualizar as telas do sistema..</summary>
+
+  ![Tela de Login](public/img/tela-login.pngrequisitos.png)
+  ![Tela de Cadastro](public/img/tela-cadastro.png)
+  ![Tela Dashboard](public/img/tela-dashboard.png)
+  ![Tela de Cadastro de Categorias](public/img/tela-cad-categoria.png)
+  ![Tela de Cadastro de Produtos](public/img/tela-produtos.png)
+  ![Tela de Movimentações](public/img/tela-movimentações.png)
+
+</details>
+
+---
+
 ### 🏗️ Arquitetura e Estrutura do Projeto
 
 O projeto foi construído seguindo o padrão arquitetural **MVC (Model-View-Controller)** para garantir a separação de responsabilidades, facilitar a manutenção e a escalabilidade do código.
